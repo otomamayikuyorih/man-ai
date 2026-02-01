@@ -1,0 +1,20 @@
+{
+  "generated_at": 0,
+  "feeds": {
+    "note": [
+      {
+        "title": "dummy note",
+        "link": "https://note.com/biz_organized",
+        "date": "2026-02-02T00:00:00+09:00"
+      }
+    ],
+    "youtube": [
+      {
+        "title": "dummy youtube",
+        "link": "https://www.youtube.com/@jazz-manbo",
+        "date": "2026-02-02T00:00:00+09:00",
+        "thumb": ""
+      }
+    ]
+  }
+}
