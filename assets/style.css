@@ -1,23 +1,30 @@
 :root{
-  --bg:#fbf8f1;        /* ������ */
-  --paper:#ffffff;     /* ���� */
-  --ink:#1a1a1a;       /* ���� */
-  --line:rgba(0,0,0,.12);
-  --muted:rgba(0,0,0,.55);
-  --accent:rgba(0,0,0,.78);
+  /* ===== Palette（少し上品に：暖色グレー寄り） ===== */
+  --bg:#f6f1e6;              /* 生成りを少し深く */
+  --paper:#ffffff;           /* 紙面 */
+  --ink:#161616;             /* 文字（ほんの少し締める） */
+  --line:rgba(40,30,20,.12); /* 黒線→暖色グレー */
+  --muted:rgba(40,30,20,.58);
+  --accent:rgba(20,20,20,.82);
+
+  /* 追加：差し色（黒の代わりに“深い茶”を薄く） */
+  --tint: rgba(70,45,25,.10);
+  --tint2: rgba(70,45,25,.16);
 
   font-family: ui-serif, "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
 }
 
 *{ box-sizing: border-box; }
 
-html, body{
-  height: 100%;
-}
+html, body{ height: 100%; }
 
 body{
   margin:0;
-  background:var(--bg);
+  /* 背景にうっすらグラデで“上質な紙”っぽく */
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(255,255,255,.55), rgba(255,255,255,0) 55%),
+    radial-gradient(900px 500px at 100% 40%, rgba(255,255,255,.35), rgba(255,255,255,0) 60%),
+    var(--bg);
   color:var(--ink);
 }
 
@@ -31,26 +38,33 @@ body{
 .paper{
   background:var(--paper);
   border:1px solid var(--line);
-  border-radius:14px;
+  border-radius:16px; /* ほんの少しだけ上げる */
   padding:18px;
-  box-shadow: 0 10px 28px rgba(0,0,0,.06);
+  /* 影を“柔らかく長く”して高級感 */
+  box-shadow:
+    0 18px 42px rgba(0,0,0,.06),
+    0 2px 0 rgba(255,255,255,.9) inset;
 }
 
-/* Hero (�傫��������}����) */
+/* Hero */
 .hero{
   margin: 0 0 14px;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: #f6f2ea;
+  /* べた塗り→淡い紙色＋影 */
+  background: linear-gradient(180deg, #f7f3ea, #f2ece1);
+  box-shadow: 0 10px 26px rgba(0,0,0,.05);
 }
 
 .hero img{
   width: 100%;
-  max-height: 360px;          /* �����ŗ}���� */
-  object-fit: cover;          /* �g���~���O */
-  object-position: center top;/* ����c�� */
+  max-height: 360px;
+  object-fit: cover;
+  object-position: center top;
   display: block;
+  /* 写真を少しだけ“雑誌”っぽく */
+  filter: contrast(1.03) saturate(1.02);
 }
 
 .paperHead{
@@ -73,10 +87,11 @@ body{
 .icon{
   width:48px;
   height:48px;
-  border-radius:50%;
+  border-radius:14px; /* 丸→“上品な角丸” */
   border:1px solid var(--line);
   object-fit: cover;
   flex: 0 0 auto;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
 }
 
 .brandText{ min-width: 0; }
@@ -84,7 +99,7 @@ body{
 .brand{
   margin:0;
   font-size:28px;
-  letter-spacing:.10em;
+  letter-spacing:.08em; /* ちょい控えめ */
   font-weight:700;
   line-height:1.05;
 }
@@ -93,13 +108,13 @@ body{
   margin:6px 0 0;
   color:var(--muted);
   font-size:14px;
-  line-height:1.4;
+  line-height:1.5;
 }
 
-/* �E�������N�F�{�^���ł͂Ȃ��u�����v�� */
+/* 右側リンク：索引風を維持しつつ、線を上品に */
 .topLinks{
   display:flex;
-  gap:10px;
+  gap:12px;
   flex-wrap:wrap;
   justify-content:flex-end;
   align-items:center;
@@ -109,16 +124,28 @@ body{
 .topLinks a{
   color:var(--ink);
   text-decoration:none;
-  border-bottom:1px dotted rgba(0,0,0,.35);
-  padding:2px 0;
+  padding:3px 0;
   font-size:14px;
+  position: relative;
 }
 
-.topLinks a:hover{
-  border-bottom-color: rgba(0,0,0,.65);
+/* 点線→ハイライト風（おしゃれ見え） */
+.topLinks a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-2px;
+  height:2px;
+  background: linear-gradient(90deg, rgba(0,0,0,.18), rgba(0,0,0,0));
+  opacity:.55;
 }
 
-/* Grid: headlines + side */
+.topLinks a:hover::after{
+  opacity:.9;
+}
+
+/* Grid */
 .paperGrid{
   display:grid;
   grid-template-columns: 2fr 1fr;
@@ -128,9 +155,10 @@ body{
 .paperTitle{
   margin:0 0 10px;
   font-size:18px;
-  letter-spacing:.02em;
+  letter-spacing:.01em;
 }
 
+/* headlines */
 .headlineList{
   margin:0;
   padding-left:20px;
@@ -138,17 +166,22 @@ body{
 
 .headlineList li{
   margin:10px 0;
-  line-height:1.6;
+  line-height:1.7;
 }
 
+/* リンク下線を“線”→“薄い帯”に */
 .headlineList a{
   color:var(--ink);
   text-decoration:none;
-  border-bottom:1px solid rgba(0,0,0,.18);
+  background:
+    linear-gradient(transparent 68%, var(--tint) 0);
+  border-radius:6px;
+  padding:0 .08em;
 }
 
 .headlineList a:hover{
-  border-bottom-color: rgba(0,0,0,.35);
+  background:
+    linear-gradient(transparent 62%, var(--tint2) 0);
 }
 
 .hmeta{
@@ -163,6 +196,7 @@ body{
   font-style: italic;
 }
 
+/* side */
 .paperSide{
   border-left:1px solid var(--line);
   padding-left:14px;
@@ -171,7 +205,7 @@ body{
 .sideTitle{
   margin:0 0 10px;
   font-size:16px;
-  letter-spacing:.02em;
+  letter-spacing:.01em;
 }
 
 .seriesList{
@@ -179,18 +213,18 @@ body{
   padding-left:18px;
 }
 
-.seriesList li{
-  margin:8px 0;
-}
+.seriesList li{ margin:8px 0; }
 
 .seriesList a{
   color:var(--ink);
   text-decoration:none;
-  border-bottom:1px dotted rgba(0,0,0,.25);
+  background: linear-gradient(transparent 70%, rgba(0,0,0,.07) 0);
+  border-radius:6px;
+  padding:0 .08em;
 }
 
 .seriesList a:hover{
-  border-bottom-color: rgba(0,0,0,.45);
+  background: linear-gradient(transparent 64%, rgba(0,0,0,.12) 0);
 }
 
 .mini{
@@ -208,25 +242,29 @@ body{
 .miniText{
   margin:0;
   font-size:13px;
-  line-height:1.55;
+  line-height:1.6;
   color:var(--accent);
 }
 
-/* ===== Cards (each section) ===== */
+/* ===== Cards ===== */
 .card{
   background:var(--paper);
   border:1px solid var(--line);
-  border-radius:14px;
+  border-radius:16px;
   padding:16px;
   margin:16px 0;
-  box-shadow: 0 6px 18px rgba(0,0,0,.03);
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.05),
+    0 1px 0 rgba(255,255,255,.9) inset;
 }
 
 .card h2{
   margin:0 0 10px;
   font-size:18px;
+  letter-spacing:.01em;
 }
 
+/* lists */
 .list{
   padding-left:20px;
   margin:10px 0 0;
@@ -234,17 +272,19 @@ body{
 
 .list li{
   margin:8px 0;
-  line-height:1.6;
+  line-height:1.7;
 }
 
 .list a{
   color:var(--ink);
   text-decoration:none;
-  border-bottom:1px solid rgba(0,0,0,.18);
+  background: linear-gradient(transparent 68%, var(--tint) 0);
+  border-radius:6px;
+  padding:0 .08em;
 }
 
 .list a:hover{
-  border-bottom-color: rgba(0,0,0,.35);
+  background: linear-gradient(transparent 62%, var(--tint2) 0);
 }
 
 .meta{
@@ -256,11 +296,13 @@ body{
 .meta a{
   color:var(--ink);
   text-decoration:none;
-  border-bottom:1px solid rgba(0,0,0,.18);
+  background: linear-gradient(transparent 72%, rgba(0,0,0,.08) 0);
+  border-radius:6px;
+  padding:0 .06em;
 }
 
 .meta a:hover{
-  border-bottom-color: rgba(0,0,0,.35);
+  background: linear-gradient(transparent 66%, rgba(0,0,0,.13) 0);
 }
 
 /* YouTube grid */
@@ -277,9 +319,10 @@ body{
   color:inherit;
   background:#fff;
   border:1px solid var(--line);
-  border-radius:12px;
+  border-radius:14px;
   overflow:hidden;
-  box-shadow: 0 4px 14px rgba(0,0,0,.04);
+  box-shadow: 0 12px 26px rgba(0,0,0,.06);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
 }
 
 .yt img{
@@ -291,27 +334,30 @@ body{
 .yt .t{
   padding:10px;
   font-size:14px;
-  line-height:1.35;
+  line-height:1.4;
   color:var(--ink);
 }
 
 .yt:hover{
-  border-color: rgba(0,0,0,.22);
+  border-color: rgba(40,30,20,.22);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(0,0,0,.08);
 }
 
-/* Button */
+/* Button（ボタンは“紙片”っぽく） */
 .btn{
   display:inline-block;
   padding:10px 14px;
-  border-radius:12px;
+  border-radius:14px;
   border:1px solid var(--line);
   text-decoration:none;
   color:var(--ink);
-  background:#fff;
+  background: linear-gradient(180deg, #ffffff, #fbf7ef);
+  box-shadow: 0 10px 22px rgba(0,0,0,.06);
 }
 
 .btn:hover{
-  border-color: rgba(0,0,0,.22);
+  border-color: rgba(40,30,20,.22);
 }
 
 /* Footer */
@@ -328,15 +374,11 @@ body{
   flex-wrap:wrap;
 }
 
-.footSig{
-  color: var(--muted);
-}
+.footSig{ color: var(--muted); }
 
 /* ===== Responsive ===== */
 @media (max-width: 800px){
-  .paperGrid{
-    grid-template-columns:1fr;
-  }
+  .paperGrid{ grid-template-columns:1fr; }
   .paperSide{
     border-left:none;
     padding-left:0;
@@ -347,10 +389,6 @@ body{
     flex-direction: column;
     align-items:flex-start;
   }
-  .topLinks{
-    justify-content:flex-start;
-  }
-  .hero img{
-    max-height: 260px;
-  }
+  .topLinks{ justify-content:flex-start; }
+  .hero img{ max-height: 260px; }
 }
