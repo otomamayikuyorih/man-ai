@@ -3,7 +3,7 @@ name: Update feeds
 on:
   workflow_dispatch:
   schedule:
-    # 3ŠÔ‚²‚ÆiUTCjB“ú–{ŠÔ‚Í +9h ‚Å‚·
+    # 3æ™‚é–“ã”ã¨ï¼ˆUTCï¼‰ã€‚æ—¥æœ¬æ™‚é–“ã¯ +9h
     - cron: "0 */3 * * *"
 
 permissions:
@@ -18,9 +18,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # ------------------------
+      # Checkout
+      # ------------------------
       - name: Checkout
         uses: actions/checkout@v4
 
+      # ------------------------
+      # Setup runtimes
+      # ------------------------
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -31,19 +37,44 @@ jobs:
         with:
           node-version: "20"
 
+      # ------------------------
+      # Install Python deps
+      # ------------------------
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
           pip install requests feedparser python-dateutil
 
+      # ------------------------
+      # Fetch feeds (Python)
+      # ä¾‹: note / YouTube RSSå–å¾—
+      # ------------------------
       - name: Fetch feeds (python)
         run: |
           python scripts/fetch_feeds.py
 
+      # ------------------------
+      # Build feed.json (Node)
+      # ä¾‹: feeds.note / feeds.youtube ã‚’ç”Ÿæˆ
+      # ------------------------
       - name: Build feeds.json (node)
         run: |
           node scripts/build-feeds.mjs
 
+      # ------------------------
+      # Build SUZURI feed (Node)
+      # feeds.suzuri ã‚’ data/feed.json ã«è¿½è¨˜
+      # ------------------------
+      - name: Build SUZURI feed (node)
+        run: |
+          node scripts/build_suzuri_feed.mjs
+        env:
+          SUZURI_TOKEN: ${{ secrets.SUZURI_TOKEN }}
+          SUZURI_USER:  ${{ secrets.SUZURI_USER }}
+
+      # ------------------------
+      # Commit & Push
+      # ------------------------
       - name: Commit & Push if changed
         run: |
           git status --porcelain
