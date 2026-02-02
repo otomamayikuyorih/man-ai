@@ -18,15 +18,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ------------------------
-      # Checkout
-      # ------------------------
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ------------------------
-      # Setup runtimes
-      # ------------------------
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -37,44 +31,28 @@ jobs:
         with:
           node-version: "20"
 
-      # ------------------------
-      # Install Python deps
-      # ------------------------
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
           pip install requests feedparser python-dateutil
 
-      # ------------------------
-      # Fetch feeds (Python)
-      # 例: note / YouTube RSS取得
-      # ------------------------
       - name: Fetch feeds (python)
         run: |
           python scripts/fetch_feeds.py
 
-      # ------------------------
-      # Build feed.json (Node)
-      # 例: feeds.note / feeds.youtube を生成
-      # ------------------------
+      # ✅ 先にSUZURIを生成（例：data/suzuri.json など）
+      - name: Build SUZURI feed (node)
+        env:
+          SUZURI_TOKEN: ${{ secrets.SUZURI_TOKEN }}
+          SUZURI_USER: ${{ secrets.SUZURI_USER }}
+        run: |
+          node scripts/build_suzuri_feed.mjs
+
+      # ✅ 最後に統合して data/feed.json を作る
       - name: Build feeds.json (node)
         run: |
           node scripts/build-feeds.mjs
 
-      # ------------------------
-      # Build SUZURI feed (Node)
-      # feeds.suzuri を data/feed.json に追記
-      # ------------------------
-      - name: Build SUZURI feed (node)
-        run: |
-          node scripts/build_suzuri_feed.mjs
-        env:
-          SUZURI_TOKEN: ${{ secrets.SUZURI_TOKEN }}
-          SUZURI_USER:  ${{ secrets.SUZURI_USER }}
-
-      # ------------------------
-      # Commit & Push
-      # ------------------------
       - name: Commit & Push if changed
         run: |
           git status --porcelain
