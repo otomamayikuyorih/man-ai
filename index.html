@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>マンAI</title>
+  <title>MAN-AI</title>
   <meta name="description" content="思考・音楽・酒・モノづくりの現在地（自動更新）" />
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
@@ -11,15 +11,14 @@
 <body>
   <main class="wrap">
 
-    <!-- ===== Paper top ===== -->
+    <!-- ===== Paper top (ほぼ日っぽい一面) ===== -->
     <section class="paper" id="top">
 
-      <!-- header -->
       <div class="paperHead">
         <div class="brandRow">
           <img src="./assets/icon-allman.png" class="icon" alt="MAN-AI icon" />
           <div class="brandText">
-            <h1 class="brand">マンAI</h1>
+            <h1 class="brand">MAN-AI</h1>
             <p class="tagline">思考・音楽・酒・モノづくりの現在地（自動更新）</p>
           </div>
         </div>
@@ -32,77 +31,85 @@
         </div>
       </div>
 
-      <!-- ===== TOP ROW : 4 media ===== -->
-      <div class="paperGrid topRow">
+      <div class="paperGrid">
 
-        <!-- note -->
-        <section class="paperBlock">
-          <h2 class="paperTitle">note（最新）</h2>
-          <ul id="noteTop3" class="headlineList">
+        <!-- ===== ここが「一番上の行」：note → YouTube → SUZURI → X ===== -->
+        <section class="paperLead" aria-labelledby="today-title">
+          <h2 id="today-title" class="paperTitle">今日の更新</h2>
+
+          <!-- 4メディア top row -->
+          <div class="topRow">
+            <!-- note 最新3件 -->
+            <section class="paperBlock" aria-label="note 最新">
+              <h3 class="paperMiniTitle">note（最新3）</h3>
+              <ul id="noteTop3" class="headlineList" aria-live="polite">
+                <li class="loading">読み込み中…</li>
+              </ul>
+            </section>
+
+            <!-- YouTube -->
+            <section class="paperBlock" aria-label="YouTube 最新">
+              <h3 class="paperMiniTitle">YouTube</h3>
+              <div id="ytTop" class="ytMiniGrid" aria-live="polite"></div>
+            </section>
+
+            <!-- SUZURI -->
+            <section class="paperBlock" aria-label="SUZURI">
+              <h3 class="paperMiniTitle">SUZURI</h3>
+              <p class="miniText">新作・全商品はこちら</p>
+              <p>
+                <a class="btn small" href="https://suzuri.jp/YugenKozo" target="_blank" rel="noopener">
+                  ショップを見る
+                </a>
+              </p>
+            </section>
+
+            <!-- X 埋め込み -->
+            <section class="paperBlock" aria-label="X">
+              <h3 class="paperMiniTitle">X</h3>
+              <a class="twitter-timeline"
+                 data-height="360"
+                 data-dnt="true"
+                 data-theme="light"
+                 href="https://x.com/hirokkobokko">
+                Posts by @hirokkobokko
+              </a>
+            </section>
+          </div>
+
+          <!-- ✅ app.js互換のため mixList を「残す」 -->
+          <!-- 表示したくない場合は style.css 側で #mixList を display:none にしてください -->
+          <ol id="mixList" class="headlineList" aria-live="polite">
             <li class="loading">読み込み中…</li>
+          </ol>
+
+        </section>
+
+        <!-- 連載棚（元のまま） -->
+        <aside class="paperSide" aria-label="連載">
+          <h3 class="sideTitle">連載</h3>
+          <ul class="seriesList">
+            <li><a href="#thoughts">Business Man（note）</a></li>
+            <li><a href="#sounds">Chill The Man（YouTube）</a></li>
+            <li><a href="#moments">Sakenomi Man（X）</a></li>
+            <li><a href="#objects">Art Man（SUZURI）</a></li>
           </ul>
-        </section>
 
-        <!-- YouTube -->
-        <section class="paperBlock">
-          <h2 class="paperTitle">YouTube</h2>
-          <div id="ytTop" class="ytMiniGrid"></div>
-        </section>
-
-        <!-- SUZURI -->
-        <section class="paperBlock">
-          <h2 class="paperTitle">SUZURI</h2>
-          <p class="miniText">新作・全商品はこちら</p>
-          <a class="btn small"
-             href="https://suzuri.jp/YugenKozo"
-             target="_blank" rel="noopener">
-            ショップを見る
-          </a>
-        </section>
-
-        <!-- X -->
-        <section class="paperBlock">
-          <h2 class="paperTitle">X</h2>
-          <a class="twitter-timeline"
-             data-height="360"
-             data-dnt="true"
-             data-theme="light"
-             href="https://x.com/hirokkobokko">
-            Posts by @hirokkobokko
-          </a>
-        </section>
-
+          <div class="mini">
+            <div class="miniLabel">更新方針</div>
+            <p class="miniText">各メディアを更新すると、このページも自動で更新されます。</p>
+          </div>
+        </aside>
       </div>
-
-      <!-- ===== series / policy ===== -->
-      <aside class="paperSide" aria-label="連載">
-        <h3 class="sideTitle">連載</h3>
-        <ul class="seriesList">
-          <li><a href="#thoughts">Business Man（note）</a></li>
-          <li><a href="#sounds">Chill The Man（YouTube）</a></li>
-          <li><a href="#moments">Sakenomi Man（X）</a></li>
-          <li><a href="#objects">Art Man（SUZURI）</a></li>
-        </ul>
-
-        <div class="mini">
-          <div class="miniLabel">更新方針</div>
-          <p class="miniText">
-            各メディアを更新すると、このページも自動で更新されます。
-          </p>
-        </div>
-      </aside>
-
     </section>
 
-    <!-- ===== Sections ===== -->
+    <!-- ===== Sections（元のまま） ===== -->
 
     <section id="thoughts" class="card">
       <h2>Latest Thoughts（note）</h2>
       <ul id="noteList" class="list"></ul>
       <p class="meta">
-        <a href="https://note.com/biz_organized" target="_blank" rel="noopener">
-          noteを開く
-        </a>
+        <a href="https://note.com/biz_organized" target="_blank" rel="noopener">noteを開く</a>
       </p>
     </section>
 
@@ -110,9 +117,7 @@
       <h2>Latest Sounds（YouTube）</h2>
       <div id="ytList" class="grid"></div>
       <p class="meta">
-        <a href="https://www.youtube.com/@jazz-manbo" target="_blank" rel="noopener">
-          チャンネルを見る
-        </a>
+        <a href="https://www.youtube.com/@jazz-manbo" target="_blank" rel="noopener">チャンネルを見る</a>
       </p>
     </section>
 
@@ -122,36 +127,4 @@
          data-height="520"
          data-dnt="true"
          data-theme="light"
-         href="https://x.com/hirokkobokko">
-        Posts by @hirokkobokko
-      </a>
-    </section>
-
-    <section id="objects" class="card">
-      <h2>Objects（SUZURI）</h2>
-      <p>新作や全商品はこちら：</p>
-      <p>
-        <a class="btn"
-           href="https://suzuri.jp/YugenKozo"
-           target="_blank" rel="noopener">
-          SUZURIショップへ
-        </a>
-      </p>
-    </section>
-
-    <footer class="footer">
-      <div class="footerRow">
-        <small id="genAt"></small>
-        <small class="footSig">MAN-AI / edited by Front Man</small>
-      </div>
-    </footer>
-
-  </main>
-
-  <!-- X widget -->
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-  <!-- app -->
-  <script defer src="./assets/app.js"></script>
-</body>
-</html>
+         href="https://x.com
