@@ -32,60 +32,15 @@
       </div>
 
       <div class="paperGrid">
-
-        <!-- ===== ここが「一番上の行」：note → YouTube → SUZURI → X ===== -->
+        <!-- 今日の更新（note + YouTube を混ぜた見出し） -->
         <section class="paperLead" aria-labelledby="today-title">
           <h2 id="today-title" class="paperTitle">今日の更新</h2>
-
-          <!-- 4メディア top row -->
-          <div class="topRow">
-            <!-- note 最新3件 -->
-            <section class="paperBlock" aria-label="note 最新">
-              <h3 class="paperMiniTitle">note（最新3）</h3>
-              <ul id="noteTop3" class="headlineList" aria-live="polite">
-                <li class="loading">読み込み中…</li>
-              </ul>
-            </section>
-
-            <!-- YouTube -->
-            <section class="paperBlock" aria-label="YouTube 最新">
-              <h3 class="paperMiniTitle">YouTube</h3>
-              <div id="ytTop" class="ytMiniGrid" aria-live="polite"></div>
-            </section>
-
-            <!-- SUZURI -->
-            <section class="paperBlock" aria-label="SUZURI">
-              <h3 class="paperMiniTitle">SUZURI</h3>
-              <p class="miniText">新作・全商品はこちら</p>
-              <p>
-                <a class="btn small" href="https://suzuri.jp/YugenKozo" target="_blank" rel="noopener">
-                  ショップを見る
-                </a>
-              </p>
-            </section>
-
-            <!-- X 埋め込み -->
-            <section class="paperBlock" aria-label="X">
-              <h3 class="paperMiniTitle">X</h3>
-              <a class="twitter-timeline"
-                 data-height="360"
-                 data-dnt="true"
-                 data-theme="light"
-                 href="https://x.com/hirokkobokko">
-                Posts by @hirokkobokko
-              </a>
-            </section>
-          </div>
-
-          <!-- ✅ app.js互換のため mixList を「残す」 -->
-          <!-- 表示したくない場合は style.css 側で #mixList を display:none にしてください -->
           <ol id="mixList" class="headlineList" aria-live="polite">
             <li class="loading">読み込み中…</li>
           </ol>
-
         </section>
 
-        <!-- 連載棚（元のまま） -->
+        <!-- 連載棚 -->
         <aside class="paperSide" aria-label="連載">
           <h3 class="sideTitle">連載</h3>
           <ul class="seriesList">
@@ -103,7 +58,7 @@
       </div>
     </section>
 
-    <!-- ===== Sections（元のまま） ===== -->
+    <!-- ===== Sections ===== -->
 
     <section id="thoughts" class="card">
       <h2>Latest Thoughts（note）</h2>
@@ -123,8 +78,35 @@
 
     <section id="moments" class="card">
       <h2>Latest Moments（X）</h2>
+
+      <!-- X埋め込みはこの形が一番安定 -->
       <a class="twitter-timeline"
          data-height="520"
          data-dnt="true"
          data-theme="light"
-         href="https://x.com
+         href="https://x.com/hirokkobokko">
+        Posts by @hirokkobokko
+      </a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </section>
+
+    <section id="objects" class="card">
+      <h2>Objects（SUZURI）</h2>
+      <p>新作や全商品はこちら：</p>
+      <p>
+        <a class="btn" href="https://suzuri.jp/YugenKozo" target="_blank" rel="noopener">SUZURIショップへ</a>
+      </p>
+    </section>
+
+    <footer class="footer">
+      <div class="footerRow">
+        <small id="genAt"></small>
+        <small class="footSig">MAN-AI / edited by Front Man</small>
+      </div>
+    </footer>
+
+  </main>
+
+  <script defer src="./assets/app.js"></script>
+</body>
+</html>
