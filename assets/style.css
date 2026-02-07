@@ -50,7 +50,7 @@ html, body{
   border: 0;
   height: 1px;
   background: var(--ink);
-  margin: 2px 0 2px;
+  margin: 0px 0 0px;
   opacity: .95;
 }
 
@@ -169,6 +169,7 @@ html, body{
     align-items: flex-start;
   }
 }
+
 
 
 
