@@ -1,107 +1,191 @@
+/* =========================
+   Base
+========================= */
+
 :root{
   --bg: #ffffff;
-  --ink: #0f172a;
-  --muted: #475569;
-  --line: rgba(15,23,42,.12);
-
-  --max: 860px;
-
-  font-family: "Noto Serif JP", serif;
+  --paper: #ffffff;
+  --ink: #0f172a;        /* 濃いネイビー寄り */
+  --muted: #64748b;      /* 補助テキスト */
+  --line: #e5e7eb;       /* 罫線 */
+  --accent: #0b3a6f;     /* 見出し用 */
 }
 
-*{ box-sizing:border-box; }
+*{
+  box-sizing: border-box;
+}
 
-body{
-  margin:0;
+html, body{
+  margin: 0;
+  padding: 0;
   background: var(--bg);
   color: var(--ink);
+  font-family:
+    "Hiragino Mincho ProN",
+    "Hiragino Mincho Pro",
+    "Yu Mincho",
+    "Noto Serif JP",
+    serif;
+  line-height: 1.8;
 }
 
-.wrap{
-  max-width: var(--max);
+/* =========================
+   Layout
+========================= */
+
+.container{
+  max-width: 760px;
   margin: 0 auto;
-  padding: 28px 18px 40px;
+  padding: 48px 20px 64px;
 }
 
-/* ===== Header ===== */
-.siteHeader{
-  border-bottom: 2px solid var(--ink);
-  padding-bottom: 16px;
-  margin-bottom: 28px;
+/* =========================
+   Header
+========================= */
+
+.header{
+  margin-bottom: 40px;
 }
 
 .siteTitle{
-  margin:0;
   font-size: 28px;
-  font-weight: 700;
-  letter-spacing: .02em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
 }
 
-.siteLead{
-  margin: 8px 0 0;
-  font-size: 16px;
+.siteDesc{
+  font-size: 15px;
   color: var(--muted);
 }
 
-/* ===== Note list ===== */
-#noteList{
-  list-style:none;
-  padding:0;
-  margin:0;
+/* =========================
+   Section
+========================= */
+
+.section{
+  margin-top: 48px;
 }
 
-/* 1記事 = 1ブロック */
-.card.note{
-  padding: 0 0 22px;
-  margin: 0 0 26px;
+.sectionTitle{
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+}
+
+/* =========================
+   Note Articles
+========================= */
+
+.noteItem{
+  padding: 24px 0;
   border-bottom: 1px solid var(--line);
 }
 
-/* title */
-.card.note .title{
-  display:block;
-  font-size: 22px;          /* ← 日経レベル */
-  font-weight: 700;
-  line-height: 1.55;
-  color: var(--ink);
-  text-decoration:none;
+.noteItem:last-child{
+  border-bottom: none;
 }
 
-.card.note .title:hover{
+.noteTitle{
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+.noteTitle a{
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.noteTitle a:hover{
   text-decoration: underline;
 }
 
-/* meta */
-.card.note .meta{
-  margin-top: 6px;
-  font-size: 14px;
+.noteDate{
+  font-size: 13px;
   color: var(--muted);
+  margin-bottom: 10px;
 }
 
-/* description */
-.card.note .desc{
-  margin-top: 10px;
-  font-size: 16.5px;        /* ← 本文サイズ */
-  line-height: 1.9;
-  color: #1f2937;
+.noteDesc{
+  font-size: 15px;
+  color: var(--ink);
 }
 
-/* footer */
+/* 続きを読むリンク */
+.noteMore{
+  margin-top: 6px;
+}
+
+.noteMore a{
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.noteMore a:hover{
+  text-decoration: underline;
+}
+
+/* =========================
+   Footer
+========================= */
+
 .footer{
-  margin-top: 40px;
+  margin-top: 64px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
   font-size: 13px;
   color: var(--muted);
 }
 
-/* ===== Mobile ===== */
-@media (max-width: 600px){
-  .siteTitle{ font-size: 24px; }
+.footerInner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
 
-  .card.note .title{
+.contactLink{
+  font-size: 14px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.contactLink:hover{
+  text-decoration: underline;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 640px){
+  .container{
+    padding: 32px 16px 48px;
+  }
+
+  .siteTitle{
+    font-size: 24px;
+  }
+
+  .sectionTitle{
     font-size: 20px;
   }
 
-  .card.note .desc{
-    font-size: 16px;
+  .noteTitle{
+    font-size: 17px;
+  }
+
+  .noteDesc{
+    font-size: 14px;
+  }
+
+  .footerInner{
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
