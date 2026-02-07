@@ -122,9 +122,9 @@ html, body{
 
 /* ===== Footer (任意) ===== */
 .footer{
-  margin-top: 72px;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
+  margin-top: 0;      /* 72px を消す */
+  padding-top: 12px;  /* 必要なら少しだけ */
+  border-top: none;   /* 線を消す */
   font-size: 13px;
   color: var(--muted);
 }
@@ -169,5 +169,6 @@ html, body{
     align-items: flex-start;
   }
 }
+
 
 
