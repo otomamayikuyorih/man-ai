@@ -5,13 +5,15 @@
 :root{
   --bg: #ffffff;
   --paper: #ffffff;
-  --ink: #0f172a;        /* 濃いネイビー寄り */
+  --ink: #0f172a;        /* 濃いネイビー */
   --muted: #64748b;      /* 補助テキスト */
   --line: #e5e7eb;       /* 罫線 */
-  --accent: #0b3a6f;     /* 見出し用 */
+  --accent: #0b3a6f;     /* 見出し・リンク */
 }
 
-*{ box-sizing: border-box; }
+*{
+  box-sizing: border-box;
+}
 
 html, body{
   margin: 0;
@@ -24,96 +26,109 @@ html, body{
     "Yu Mincho",
     "Noto Serif JP",
     serif;
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
-/* 余計な箇条書き/余白を消す（標準表示に戻らないための保険） */
-ul{ list-style: none; padding: 0; margin: 0; }
-a{ color: inherit; }
-
 /* =========================
-   Layout (いまは .wrap を使用)
+   Layout
 ========================= */
 
-.wrap{
+.container{
   max-width: 760px;
   margin: 0 auto;
-  padding: 48px 20px 64px;
+  padding: 56px 20px 72px;
 }
 
 /* =========================
-   Header (いまは siteHeader/siteTitle/siteLead を使用)
+   Header
 ========================= */
 
 .siteHeader{
-  margin-bottom: 40px;
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 4px solid var(--ink); /* ← 太線（重要） */
 }
 
 .siteTitle{
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   margin: 0 0 8px;
 }
 
-.siteLead{
+.siteDesc{
   font-size: 15px;
   color: var(--muted);
-  margin: 0;
 }
 
 /* =========================
-   Note Articles (app.js のDOMに合わせる)
+   Section
 ========================= */
 
-/* li.card.note が1記事 */
-.card.note{
-  padding: 24px 0;
+.section{
+  margin-top: 56px;
+}
+
+.sectionTitle{
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 28px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--line);
 }
 
-.card.note:last-child{
+/* =========================
+   Note Articles
+========================= */
+
+.noteItem{
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.noteItem:last-child{
   border-bottom: none;
 }
 
-/* タイトルリンク a.title */
-.card.note .title{
-  display: block;
-  font-size: 19px;
+.noteTitle{
+  font-size: 20px;
   font-weight: 600;
-  line-height: 1.6;
-  margin-bottom: 6px;
+  line-height: 1.65;
+  margin: 0 0 6px;
+}
+
+.noteTitle a{
   color: var(--ink);
   text-decoration: none;
 }
 
-.card.note .title:hover{
+.noteTitle a:hover{
   text-decoration: underline;
 }
 
-/* 日付 .meta */
-.card.note .meta{
+.noteDate{
   font-size: 13px;
   color: var(--muted);
-  margin: 0 0 10px;
+  margin-bottom: 12px;
 }
 
-/* 概要 p.desc */
-.card.note .desc{
-  font-size: 15px;
+.noteDesc{
+  font-size: 15.5px;
   color: var(--ink);
-  margin: 0;
 }
 
-/* （続きはこちら） a.moreLink */
-.moreLink{
+/* 続きを読む */
+.noteMore{
+  margin-top: 8px;
+}
+
+.noteMore a{
   font-size: 14px;
   color: var(--accent);
   text-decoration: none;
-  white-space: nowrap;
 }
 
-.moreLink:hover{
+.noteMore a:hover{
   text-decoration: underline;
 }
 
@@ -122,8 +137,8 @@ a{ color: inherit; }
 ========================= */
 
 .footer{
-  margin-top: 64px;
-  padding-top: 16px;
+  margin-top: 72px;
+  padding-top: 20px;
   border-top: 1px solid var(--line);
   font-size: 13px;
   color: var(--muted);
@@ -151,20 +166,24 @@ a{ color: inherit; }
 ========================= */
 
 @media (max-width: 640px){
-  .wrap{
-    padding: 32px 16px 48px;
+  .container{
+    padding: 40px 16px 56px;
   }
 
   .siteTitle{
-    font-size: 24px;
+    font-size: 26px;
   }
 
-  .card.note .title{
-    font-size: 17px;
+  .sectionTitle{
+    font-size: 20px;
   }
 
-  .card.note .desc{
-    font-size: 14px;
+  .noteTitle{
+    font-size: 18px;
+  }
+
+  .noteDesc{
+    font-size: 14.5px;
   }
 
   .footerInner{
